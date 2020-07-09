@@ -1,0 +1,12 @@
+[org/gnome/desktop/screensaver] 
+lock-enabled=false
+
+[org/gnome/desktop/session]
+idle-delay = uint32 0
+lock-enabled = false
+
+[org/gnome/desktop/lockdown]
+disable-lock-screen = true
+
+[org/gnome/desktop/notifications]
+show-in-lock-screen = false
