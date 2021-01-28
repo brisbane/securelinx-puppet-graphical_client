@@ -1,0 +1,1 @@
+*/5 * * * * root  test -f /apps/scripts/ganglia/gmetric_nvidia.sh && /apps/scripts/ganglia/gmetric_nvidia.sh

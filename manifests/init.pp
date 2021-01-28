@@ -37,7 +37,7 @@
 class graphical_client ( $disable_lock_screens = false ) {
    
    # kernel for nvidia
-   ensure_packages (["xcb-util-keysyms.i686", "xcb-util-keysyms", "kernel-devel", "dconf-editor"])
+   ensure_packages (["xcb-util-keysyms.i686", "xcb-util-keysyms", "kernel-devel"])
 	exec { 'dconfupdate' :
 	    command     => '/usr/bin/dconf update',
 	    refreshonly => true,
@@ -49,7 +49,7 @@ class graphical_client ( $disable_lock_screens = false ) {
    {
 
        yumgroup { "graphical-server-environment": ensure => "present"}
-       ensure_packages (['dconf.x86_64', 'dconf.i686'])    
+       ensure_packages (['dconf.x86_64', 'dconf.i686', 'dconf-editor'])    
        ensure_packages (['xorg-x11-fonts-ISO8859-1-75dpi', 'xorg-x11-fonts-misc', 'xorg-x11-fonts-ISO8859-1-100dpi', 'xorg-x11-fonts-100dpi', 'ucs-miscfixed-fonts', 'vlgothic-fonts', 'dejavu-serif-fonts', 'dejavu-sans-mono-fonts', 'xorg-x11-apps'] )
 
 
@@ -100,5 +100,8 @@ class graphical_client ( $disable_lock_screens = false ) {
       ensure => "$ensure_lock_suppression"
     }
   }#!RHEL6
+  file { '/etc/cron.d/gmetric_nvidia' :
+      source => "puppet:///modules/$name/cron.d.gmetric_nvidia"
+  }
 }
 
